@@ -52,7 +52,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 .findFirst();
 
         if (existingCartItem.isPresent()) {
-            CartItem cartItem = existingCartItem.get();
+            CartItem cartItem = existingCartItem.orElseThrow();
             cartItem.setQuantity(cartItem.getQuantity() + cartItemUpdateDto.getQuantity());
         } else {
             CartItem cartItem = cartItemMapper.toEntity(cartItemUpdateDto);
